@@ -1,0 +1,18 @@
+# Compose를 활용 해서 컨테이너를 2개를 띄움
+services:
+  my-db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  # 컨테이너를 한 번 더 띄울려면 들여쓰기 맞춰서 서비스를 작성하면 됨.
+  my-cache-server:
+    image: redis
+    ports:
+      - 6379:6379
+
+  # compose.yml 파일이 두 가지 컨테이너를 각자 띄움
